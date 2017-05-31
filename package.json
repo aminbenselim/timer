@@ -1,0 +1,13 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "amine benselim <abens241@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  },
+  "scripts": {
+    "serve": "live-server"
+  }
+}
