@@ -16,15 +16,37 @@
                 JavaScript Timer
             </header>
             <div class="timer">
-                <div class="display">
+                <div class="display hidden">
                     Remaining Time <br> Days: <span class="days"></span> Hours: <span class="hours"></span> Minutes:
                     <span class="minutes"></span> Seconds: <span class="seconds"></span>
                     <br><span class="endTime"></span>
                 </div>
+            </div>
+            <div class="config visible">
+                <div class="custom">
+                    <div class="h">
+                        <span class="label">Hours</span>
+                        <button class="increase">+</button>
+                        <input type="number" min=0 max=99 value=0 readonly>
+                        <button class="decrease">-</button>
+                    </div>
+                    <div class="m">
+                        <span class="label">Minutes</span>
+                        <button class="increase">+</button>
+                        <input type="number" min=0 max=59 value=0 readonly>
+                        <button class="decrease">-</button>
+                    </div>
+                    <div class="s">
+                        <span class="label">Seconds</span>
+                        <button class="increase">+</button>
+                        <input type="number" min=0 max=59 value=0 readonly>
+                        <button class="decrease">-</button>
+                    </div>
+                </div>
                 <div class="presets">
-                    <button class="five">5 minutes timer</button>
-                    <button class="fifteen">15 minutes timer</button>
-                    <button class="thirty">30 minutes timer</button>
+                    <button class="five" data-val=5> 5 minutes timer</button>
+                    <button class="fifteen" data-val=15>15 minutes timer</button>
+                    <button class="thirty" data-val=30>30 minutes timer</button>
                 </div>
             </div>
         </div>

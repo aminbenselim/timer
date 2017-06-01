@@ -13,6 +13,9 @@ const Timer = duration => {
 };
 
 // boolean used to prevent starting multiple timers at once.
+let hours = 0;
+let minutes = 0;
+let seconds = 0;
 let timerStarted = false;
 
 // helper function to display or hide specific element based on its classname/
@@ -49,7 +52,6 @@ const startTimer = (className, duration) => {
 
   const updateTimer = () => {
     const t = Timer(remainingTime--);
-    console.log(remainingTime);
     days.innerHTML = t.days;
     hours.innerHTML = ("0" + t.hours).slice(-2);
     minutes.innerHTML = ("0" + t.minutes).slice(-2);
@@ -69,10 +71,45 @@ const presets = [...document.getElementsByClassName("presets")[0].children];
 
 // make use of the data attribute
 presets.forEach(child => {
-  child.addEventListener("click", event => {
+  child.addEventListener("click", () => {
     if (!timerStarted) {
       startTimer("timer", +child.dataset.val * 60);
       timerStarted = true;
     }
   });
 });
+
+// use event delegation to handle increment and decrement
+document
+  .getElementsByClassName("custom")[0]
+  .addEventListener("click", event => {
+    event.preventDefault();
+    let element = event.target;
+    if (element.classList[0] === "increase") {
+      let input = element.parentNode.children[2];
+      input.value = handleInc(+input.value, +input.max);
+    }
+    if (element.classList[0] === "decrease") {
+      let input = element.parentNode.children[2];
+      input.value = handleDec(+input.value, +input.min);
+    }
+  });
+
+const handleInc = (val, max) => {
+  let newVal = 0;
+  if (val >= max) {
+    newVal = val;
+  } else {
+    newVal = val + 1;
+  }
+  return newVal;
+};
+const handleDec = (val, min) => {
+  let newVal = 0;
+  if (val <= min) {
+    newVal = val;
+  } else {
+    newVal = val - 1;
+  }
+  return newVal;
+};
