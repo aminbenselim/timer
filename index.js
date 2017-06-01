@@ -31,7 +31,7 @@ const toggleDisplay = (className, display) => {
 const startTimer = (className, duration) => {
   // display timer and hide preset buttons
   toggleDisplay("display", true);
-  toggleDisplay("presets", false);
+  toggleDisplay("config", false);
 
   const timer = document.getElementsByClassName(className)[0];
 
@@ -67,26 +67,12 @@ const startTimer = (className, duration) => {
 // use ES6 spread operator to convert HTMLCollection (children) to array.
 const presets = [...document.getElementsByClassName("presets")[0].children];
 
-//console.log(presets);
-
+// make use of the data attribute
 presets.forEach(child => {
   child.addEventListener("click", event => {
-    if (!timerStarted)
-      switch (child.className) {
-        case "five":
-          startTimer("timer", 300);
-          timerStarted = true;
-          break;
-        case "thirty":
-          startTimer("timer", 1800);
-          timerStarted = true;
-          break;
-        case "fifteen":
-          startTimer("timer", 900);
-          timerStarted = true;
-          break;
-      }
+    if (!timerStarted) {
+      startTimer("timer", +child.dataset.val * 60);
+      timerStarted = true;
+    }
   });
 });
-
-//startTimer("timer", 10);
