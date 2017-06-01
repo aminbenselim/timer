@@ -13,9 +13,6 @@ const Timer = duration => {
 };
 
 // boolean used to prevent starting multiple timers at once.
-let hours = 0;
-let minutes = 0;
-let seconds = 0;
 let timerStarted = false;
 
 // helper function to display or hide specific element based on its classname/
@@ -42,7 +39,7 @@ const startTimer = (className, duration) => {
   const endTime = new Date(new Date().getTime() + duration);
   timer.querySelector(".endTime").innerHTML = endTime.toUTCString();
 
-  //select correspanding spans
+  //select correspanding span
   const days = timer.querySelector(".days");
   const hours = timer.querySelector(".hours");
   const minutes = timer.querySelector(".minutes");
@@ -58,11 +55,13 @@ const startTimer = (className, duration) => {
     seconds.innerHTML = ("0" + t.seconds).slice(-2);
     if (remainingTime < 0) {
       timerStarted = false;
+      toggleDisplay("display", false);
+      toggleDisplay("config", true);
       clearInterval(timeinterval);
     }
   };
 
-  //updateTimer();
+  updateTimer();
   const timeinterval = setInterval(updateTimer, 1000);
 };
 
@@ -112,4 +111,13 @@ const handleDec = (val, min) => {
     newVal = val - 1;
   }
   return newVal;
+};
+
+//button to start custome timer
+const startButton = document.getElementsByClassName("start")[0];
+
+startButton.onclick = () => {
+  const [h, m, s] = [...document.getElementsByTagName("input")];
+  const customDuration = +h.value * 3600 + +m.value * 60 + +s.value;
+  startTimer("timer", customDuration);
 };

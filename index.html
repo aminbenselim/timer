@@ -17,8 +17,8 @@
             </header>
             <div class="timer">
                 <div class="display hidden">
-                    Remaining Time <br> Days: <span class="days"></span> Hours: <span class="hours"></span> Minutes:
-                    <span class="minutes"></span> Seconds: <span class="seconds"></span>
+                    Remaining Time <br> Days: <span class="days">0</span> Hours: <span class="hours">00</span> Minutes:
+                    <span class="minutes">00</span> Seconds: <span class="seconds">00</span>
                     <br><span class="endTime"></span>
                 </div>
             </div>
@@ -42,7 +42,10 @@
                         <input type="number" min=0 max=59 value=0 readonly>
                         <button class="decrease">-</button>
                     </div>
+                    <button class="start">Start</button>
                 </div>
+                <br> or choose a preset timer!
+                <br>
                 <div class="presets">
                     <button class="five" data-val=5> 5 minutes timer</button>
                     <button class="fifteen" data-val=15>15 minutes timer</button>
