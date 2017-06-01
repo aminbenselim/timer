@@ -12,9 +12,27 @@ const Timer = duration => {
   };
 };
 
+// boolean used to prevent starting multiple timers at once.
 let timerStarted = false;
 
+// helper function to display or hide specific element based on its classname/
+//  display :Boolean --> true = display, false = hide.
+const toggleDisplay = (className, display) => {
+  const cList = document.getElementsByClassName(className)[0].classList;
+  if (display) {
+    cList.remove("hidden");
+    cList.add("visible");
+  } else {
+    cList.remove("visible");
+    cList.add("hidden");
+  }
+};
+
 const startTimer = (className, duration) => {
+  // display timer and hide preset buttons
+  toggleDisplay("display", true);
+  toggleDisplay("presets", false);
+
   const timer = document.getElementsByClassName(className)[0];
 
   // get and display ending time.
