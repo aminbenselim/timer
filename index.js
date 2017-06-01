@@ -12,6 +12,8 @@ const Timer = duration => {
   };
 };
 
+let timerStarted = false;
+
 const startTimer = (className, duration) => {
   const timer = document.getElementsByClassName(className)[0];
 
@@ -29,12 +31,13 @@ const startTimer = (className, duration) => {
 
   const updateTimer = () => {
     const t = Timer(remainingTime--);
+    console.log(remainingTime);
     days.innerHTML = t.days;
     hours.innerHTML = ("0" + t.hours).slice(-2);
     minutes.innerHTML = ("0" + t.minutes).slice(-2);
     seconds.innerHTML = ("0" + t.seconds).slice(-2);
-    console.log(t);
     if (remainingTime < 0) {
+      timerStarted = false;
       clearInterval(timeinterval);
     }
   };
@@ -43,4 +46,29 @@ const startTimer = (className, duration) => {
   const timeinterval = setInterval(updateTimer, 1000);
 };
 
-startTimer("timer", 10);
+// use ES6 spread operator to convert HTMLCollection (children) to array.
+const presets = [...document.getElementsByClassName("presets")[0].children];
+
+//console.log(presets);
+
+presets.forEach(child => {
+  child.addEventListener("click", event => {
+    if (!timerStarted)
+      switch (child.className) {
+        case "five":
+          startTimer("timer", 300);
+          timerStarted = true;
+          break;
+        case "thirty":
+          startTimer("timer", 1800);
+          timerStarted = true;
+          break;
+        case "fifteen":
+          startTimer("timer", 900);
+          timerStarted = true;
+          break;
+      }
+  });
+});
+
+//startTimer("timer", 10);
