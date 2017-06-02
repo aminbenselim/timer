@@ -119,5 +119,5 @@ const startButton = document.getElementsByClassName("start")[0];
 startButton.onclick = () => {
   const [h, m, s] = [...document.getElementsByTagName("input")];
   const customDuration = +h.value * 3600 + +m.value * 60 + +s.value;
-  startTimer("timer", customDuration);
+  if (+h.value + +m.value + +s.value !== 0) startTimer("timer", customDuration);
 };
