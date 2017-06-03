@@ -1,17 +1,3 @@
-const Timer = duration => {
-  const seconds = Math.floor(duration % 60);
-  const minutes = Math.floor(duration / 60 % 60);
-  var hours = Math.floor(duration / 3600 % 24);
-  var days = Math.floor(duration / (3600 * 24));
-
-  return {
-    days,
-    hours,
-    minutes,
-    seconds
-  };
-};
-
 // boolean used to prevent starting multiple timers at once.
 let timerStarted = false;
 
@@ -28,19 +14,32 @@ const toggleDisplay = (className, display) => {
   }
 };
 
+const Timer = duration => {
+  const seconds = Math.floor(duration % 60);
+  const minutes = Math.floor(duration / 60 % 60);
+  var hours = Math.floor(duration / 3600 % 24);
+
+  return {
+    hours,
+    minutes,
+    seconds
+  };
+};
+
 const startTimer = (className, duration) => {
   // display timer and hide preset buttons
-  toggleDisplay("display", true);
+  toggleDisplay("timer", true);
   toggleDisplay("config", false);
 
   const timer = document.getElementsByClassName(className)[0];
 
   // get and display ending time.
-  const endTime = new Date(new Date().getTime() + duration);
-  timer.querySelector(".endTime").innerHTML = endTime.toUTCString();
+  const endTime = new Date(new Date().getTime() + duration * 1000);
+  timer.querySelector(
+    ".endTime"
+  ).innerHTML = `timer ends at ${endTime.getHours()} : ${endTime.getMinutes()}`;
 
   //select correspanding span
-  const days = timer.querySelector(".days");
   const hours = timer.querySelector(".hours");
   const minutes = timer.querySelector(".minutes");
   const seconds = timer.querySelector(".seconds");
@@ -49,14 +48,12 @@ const startTimer = (className, duration) => {
 
   const updateTimer = () => {
     const t = Timer(remainingTime--);
-    days.innerHTML = t.days;
-    hours.innerHTML = ("0" + t.hours).slice(-2);
+    if (t.hours !== 0) hours.innerHTML = `${("0" + t.hours).slice(-2)} : `;
     minutes.innerHTML = ("0" + t.minutes).slice(-2);
     seconds.innerHTML = ("0" + t.seconds).slice(-2);
     if (remainingTime < 0) {
       timerStarted = false;
-      toggleDisplay("display", false);
-      toggleDisplay("config", true);
+      toggleDisplay("finished", true);
       clearInterval(timeinterval);
     }
   };
@@ -67,7 +64,6 @@ const startTimer = (className, duration) => {
 
 // use ES6 spread operator to convert HTMLCollection (children) to array.
 const presets = [...document.getElementsByClassName("presets")[0].children];
-
 // make use of the data attribute
 presets.forEach(child => {
   child.addEventListener("click", () => {
@@ -113,11 +109,27 @@ const handleDec = (val, min) => {
   return newVal;
 };
 
-//button to start custome timer
+//button to start custom timer
 const startButton = document.getElementsByClassName("start")[0];
-
 startButton.onclick = () => {
   const [h, m, s] = [...document.getElementsByTagName("input")];
   const customDuration = +h.value * 3600 + +m.value * 60 + +s.value;
   if (+h.value + +m.value + +s.value !== 0) startTimer("timer", customDuration);
+};
+
+//button to close window window.close() only works if the window is opened by the script,
+// so i have no idea how to close the app, unless it was a chrome extension i guess,
+//so this functionality is not fulfilled...
+
+//const closeButton = document.getElementById("close");
+//closeButton.onclick = () => {
+// window.open(location, "_parent").close();
+//};
+
+//button to restart new timer
+const restartButton = document.getElementById("restart");
+restartButton.onclick = () => {
+  toggleDisplay("timer", false);
+  toggleDisplay("config", true);
+  toggleDisplay("finished", false);
 };

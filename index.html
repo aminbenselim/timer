@@ -15,11 +15,14 @@
             <header>
                 JavaScript Timer
             </header>
-            <div class="timer">
-                <div class="display hidden">
-                    Remaining Time <br> Days: <span class="days">0</span> Hours: <span class="hours">00</span> Minutes:
-                    <span class="minutes">00</span> Seconds: <span class="seconds">00</span>
+            <div class="timer hidden">
+                <div class="display">
+                    Remaining Time <br> <span class="hours"></span><span class="minutes">00</span> : <span class="seconds">00</span>
                     <br><span class="endTime"></span>
+                </div>
+                <div class="finished hidden">
+                    <button id="restart">Start new timer</button>
+                    <!-- <button id="close">Close timer App</button> -->
                 </div>
             </div>
             <div class="config visible">
@@ -27,7 +30,7 @@
                     <div class="h">
                         <span class="label">Hours</span>
                         <button class="increase">+</button>
-                        <input type="number" min=0 max=99 value=0 readonly>
+                        <input type="number" min=0 max=23 value=0 readonly>
                         <button class="decrease">-</button>
                     </div>
                     <div class="m">
