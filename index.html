@@ -5,55 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Document</title>
 </head>
 
 <body>
-    <div class="container">
-        <div class="layer">
-            <header>
-                JavaScript Timer
-            </header>
-            <div class="timer hidden">
-                <div class="display">
-                    Remaining Time <br> <span class="hours"></span><span class="minutes">00</span> : <span class="seconds">00</span>
-                    <br><span class="endTime"></span>
-                </div>
-                <div class="finished hidden">
-                    <button id="restart">Start new timer</button>
-                    <!-- <button id="close">Close timer App</button> -->
-                </div>
+    <div class="circle"></div>
+    <div class="circle bigger"></div>
+    <div class="bars"></div>
+    <div class="layer">
+        <header>
+            <h1>JavaScript Timer</h1>
+        </header>
+        <div class="timer hidden">
+            <div class="display">
+                <svg width="500" viewBox="0 0 200 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <mask id="myMask" maskUnits="userSpaceOnUse" x="0" y="0" width="200" height="80">
+                            <rect id="progress" x="0" y="0" width="130" height="80" fill="white" />
+                        </mask>
+
+                        <text id="Text" x="100" y="48" font-family="Helvetica" font-weight="bold" font-size="2em" text-anchor="middle">
+                        </text>
+                    </defs>
+
+                    <!-- Draw black rectangle in the background -->
+                    <rect x="0" y="100" width="95" fill="white" height="60" />
+
+                    <!-- Draw the text string twice. First, the white text without mask.
+       Second, the black text with the mask applied-->
+                    <use xlink:href="#Text" fill="white" />
+                    <use xlink:href="#Text" fill="black" mask="url(#myMask)" />
+                </svg>
+
+                <br> <span class="hours"></span><span class="minutes">00</span> : <span class="seconds">00</span>
+                <br><span class="endTime"></span>
             </div>
-            <div class="config visible">
-                <div class="custom">
-                    <div class="h">
-                        <span class="label">Hours</span>
-                        <button class="increase">+</button>
-                        <input type="number" min=0 max=23 value=0 readonly>
-                        <button class="decrease">-</button>
-                    </div>
-                    <div class="m">
-                        <span class="label">Minutes</span>
-                        <button class="increase">+</button>
-                        <input type="number" min=0 max=59 value=0 readonly>
-                        <button class="decrease">-</button>
-                    </div>
-                    <div class="s">
-                        <span class="label">Seconds</span>
-                        <button class="increase">+</button>
-                        <input type="number" min=0 max=59 value=0 readonly>
-                        <button class="decrease">-</button>
-                    </div>
-                    <button class="start">Start</button>
+            <div class="finished hidden">
+                <button id="restart">Start new timer</button>
+                <!-- <button id="close">Close timer App</button> -->
+            </div>
+        </div>
+        <div class="config visible">
+            <div class="custom">
+                <div class="h">
+                    <span class="label">Hours</span>
+                    <button class="increase">+</button>
+                    <input type="number" min=0 max=23 value=0 readonly>
+                    <button class="decrease">-</button>
                 </div>
-                <br> or choose a preset timer!
-                <br>
-                <div class="presets">
-                    <button class="five" data-val=5> 5 minutes timer</button>
-                    <button class="fifteen" data-val=15>15 minutes timer</button>
-                    <button class="thirty" data-val=30>30 minutes timer</button>
+                <div class="m">
+                    <span class="label">Minutes</span>
+                    <button class="increase">+</button>
+                    <input type="number" min=0 max=59 value=0 readonly>
+                    <button class="decrease">-</button>
                 </div>
+                <div class="s">
+                    <span class="label">Seconds</span>
+                    <button class="increase">+</button>
+                    <input type="number" min=0 max=59 value=0 readonly>
+                    <button class="decrease">-</button>
+                </div>
+                <button class="start">Start</button>
+            </div>
+            <br> or choose a preset timer!
+            <br>
+            <div class="presets">
+                <button class="five" data-val=5> 5 minutes timer</button>
+                <button class="fifteen" data-val=15>15 minutes timer</button>
+                <button class="thirty" data-val=30>30 minutes timer</button>
             </div>
         </div>
     </div>
