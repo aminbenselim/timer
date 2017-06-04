@@ -1,51 +1,31 @@
 body {
     background-color: #589DB0;  
-    color: whitesmoke;
-    background: linear-gradient(45deg, #fa7304, #ffa008);
-background: #1a9dfd;
-      display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
+    color: white;
+    background: #1a9dfd;
+    width: 100vw;
+    height: 100vh;
 
-}
-.circle {
-    height:100px;
-    border: 50px solid white;
-    width: 100px;
-    position: fixed;
-    z-index:-1;
-    border-radius: 100%;
-    transform: translate(100%, -130%);
+    /* center layer using flexbox */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.bigger {
-    height: 300px;
-    width: 300px;
-    transform: translate(50%, -65%);
-
-}
 .layer {
-    max-width: 400px;
-    height: 80vh;
-    background: #ff5e42;
-     box-shadow: 10px 20px 20px 10px rgba(16, 79, 209, 0.7);
+    width:80vw;
+    min-width:400px;
+    max-width: 600px;
+    height: 500px;
+   /* background: #ff5e42; */
+    background: #fcc522;
+    box-shadow: -20px 20px 10px 10px rgba(16, 79, 209, 0.7);
 }
-.bars {
-    height:40px;
-    border: 30px solid white;
-    width: 1000%;
-    position: fixed;
-    z-index:-1;
-   transform: rotate(45deg) translateY(150%);
 
 
-}
+/* util classes to hide/show divs */
 .hidden {
     display: none;
 }
-
 .visible {
     display: inline;
 }
@@ -56,6 +36,57 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
+/* background circular shapes */
+.circle {
+    height:100px;
+    border: 30px solid white;
+    width: 100px;
+    position: fixed;
+    z-index:-1;
+    border-radius: 100%;
+    transform: translate(180%, -150%);
+}
+.bigger {
+    height: 200px;
+    width: 200px;
+    transform: translate(110%, -92%);
+}
+
+/* background bars */
+.bars {
+    height:40px;
+    border: 30px solid white;
+    width: 1000%;
+    position: fixed;
+    z-index:-1;
+   transform: rotate(45deg) translateY(150%);
+}
+
+/* aligning custom control items using flexbox */
+.custom {
+    width: 450px;
+    display: flex;
+}
+.control {
+    display:flex;
+    flex-direction: column;
+    width: 120px;
+    height:120px;
+}
+.label {
+    height:40px;
+}
+.ctrls{
+    height:80px;
+    display: flex;
+}
+.buttons {
+    display:flex;
+    flex-direction: column;
+}
+
+
 
 h1 {
     font: halvetica;
