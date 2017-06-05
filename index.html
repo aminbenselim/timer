@@ -39,7 +39,7 @@
                     <use xlink:href="#Text" fill="black" mask="url(#myMask)" />
                 </svg>
 
-                <br> <span class="hours"></span><span class="minutes">00</span> : <span class="seconds">00</span>
+
                 <br><span class="endTime"></span>
             </div>
             <div class="finished hidden">
@@ -49,32 +49,46 @@
         </div>
         <div class="config visible">
             <div class="custom">
-                <div class="h">
+                <div class="control h">
                     <span class="label">Hours</span>
-                    <button class="increase">+</button>
-                    <input type="number" min=0 max=23 value=0 readonly>
-                    <button class="decrease">-</button>
+                    <div class="ctrls">
+                        <input type="number" min=0 max=23 value=0 readonly>
+                        <div class="buttons">
+                            <button class="increase">+</button>
+                            <button class="decrease">-</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="m">
+                <div class="control m">
                     <span class="label">Minutes</span>
-                    <button class="increase">+</button>
-                    <input type="number" min=0 max=59 value=0 readonly>
-                    <button class="decrease">-</button>
+                    <div class="ctrls">
+                        <input type="number" min=0 max=59 value=0 readonly>
+                        <div class="buttons">
+                            <button class="increase">+</button>
+                            <button class="decrease">-</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="s">
+                <div class="control s">
                     <span class="label">Seconds</span>
-                    <button class="increase">+</button>
-                    <input type="number" min=0 max=59 value=0 readonly>
-                    <button class="decrease">-</button>
+                    <div class="ctrls">
+                        <input type="number" min=0 max=59 value=0 readonly>
+                        <div class="buttons">
+                            <button class="increase">+</button>
+                            <button class="decrease">-</button>
+                        </div>
+                    </div>
                 </div>
-                <button class="start">Start</button>
             </div>
+
+            <button name="start" class="start">Start</button>
+
             <br> or choose a preset timer!
             <br>
             <div class="presets">
-                <button class="five" data-val=5> 5 minutes timer</button>
-                <button class="fifteen" data-val=15>15 minutes timer</button>
-                <button class="thirty" data-val=30>30 minutes timer</button>
+                <button class="five" data-val=5> <span>5</span> minutes </button>
+                <button class="fifteen" data-val=15><span>15</span> minutes </button>
+                <button class="thirty" data-val=30><span>30</span> minutes </button>
             </div>
         </div>
     </div>
