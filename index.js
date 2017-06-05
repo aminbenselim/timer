@@ -15,15 +15,24 @@ const toggleDisplay = (className, display) => {
 };
 
 const Timer = duration => {
-  const seconds = Math.floor(duration % 60);
+  const hours = Math.floor(duration / 3600 % 24);
   const minutes = Math.floor(duration / 60 % 60);
-  var hours = Math.floor(duration / 3600 % 24);
+  const seconds = Math.floor(duration % 60);
 
   return {
     hours,
     minutes,
     seconds
   };
+};
+
+const displayEndTime = (duration, span) => {
+  const endTime = new Date(new Date().getTime() + duration * 1000);
+
+  let endH = ("0" + endTime, getHours()).slice(-2);
+  let endM = ("0" + endTime.getMinutes).slice(-2);
+
+  span.innerHTML = `finishes at ${endh} : ${endM}`;
 };
 
 const startTimer = (className, duration) => {
@@ -34,29 +43,39 @@ const startTimer = (className, duration) => {
   const timer = document.getElementsByClassName(className)[0];
 
   // get and display ending time.
-  const endTime = new Date(new Date().getTime() + duration * 1000);
-  timer.querySelector(
-    ".endTime"
-  ).innerHTML = `timer ends at ${endTime.getHours()} : ${endTime.getMinutes()}`;
-
+  displayEndTime(duration * 1000, timer.querySelector(".endTime"));
   //select correspanding span
-  const hours = timer.querySelector(".hours");
-  const minutes = timer.querySelector(".minutes");
-  const seconds = timer.querySelector(".seconds");
-
+  let hours = ""; //timer.querySelector(".hours");
+  let minutes = ""; //timer.querySelector(".minutes");
+  let seconds = ""; //timer.querySelector(".seconds");
+  const display = document.getElementById("Text");
+  const progress = document.getElementById("progress");
   let remainingTime = duration;
 
   const updateTimer = () => {
     const t = Timer(remainingTime--);
-    if (t.hours !== 0) hours.innerHTML = `${("0" + t.hours).slice(-2)} : `;
-    minutes.innerHTML = ("0" + t.minutes).slice(-2);
-    seconds.innerHTML = ("0" + t.seconds).slice(-2);
+    t.hours !== 0
+      ? (hours /*.innerHTML*/ = `${("0" + t.hours).slice(-2)} : `)
+      : (hours = "");
+    minutes /*.innerHTML*/ = ("0" + t.minutes).slice(-2);
+    seconds /*.innerHTML*/ = ("0" + t.seconds).slice(-2);
+    display.innerHTML = `${hours}${minutes} : ${seconds}`;
+
     if (remainingTime < 0) {
       timerStarted = false;
       toggleDisplay("finished", true);
       clearInterval(timeinterval);
+      progress.setAttribute("height", 0);
     }
   };
+
+  let width = 0;
+  const step = 80 / (duration * 1000 / 15);
+  const updater = setInterval(() => {
+    width += step;
+    progress.setAttribute("height", width);
+    if (width === 80) clearInterval(updater);
+  }, 15);
 
   updateTimer();
   const timeinterval = setInterval(updateTimer, 1000);
@@ -81,11 +100,11 @@ document
     event.preventDefault();
     let element = event.target;
     if (element.classList[0] === "increase") {
-      let input = element.parentNode.children[2];
+      let input = element.parentNode.parentNode.children[0];
       input.value = handleInc(+input.value, +input.max);
     }
     if (element.classList[0] === "decrease") {
-      let input = element.parentNode.children[2];
+      let input = element.parentNode.parentNode.children[0];
       input.value = handleDec(+input.value, +input.min);
     }
   });
