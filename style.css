@@ -1,95 +1,165 @@
 body {
-    background-color: #589DB0;  
-    color: white;
-    background: #1a9dfd;
-    width: 100vw;
-    height: 100vh;
-
-    /* center layer using flexbox */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font: halvetica;
+  color: white;
+  background: #4776E6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #8E54E9,
+    #4776E6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom left,
+    #4776E6,
+    #8E54E9
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 100vw;
+  height: 100vh;
+  /* center layer using flexbox */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
+header {
+  /* center text horizentally and vertically */
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+}
 .layer {
-    width:80vw;
-    min-width:400px;
-    max-width: 600px;
-    height: 500px;
-   /* background: #ff5e42; */
-    background: #fcc522;
-    box-shadow: -20px 20px 10px 10px rgba(16, 79, 209, 0.7);
+  /* justify-content: center; */
+  width: 80vw;
+  min-width: 400px;
+  max-width: 600px;
+  height: 550px;
+  background: #ff5e42;
+  /*background: whitesmoke;*/
+  box-shadow: -20px 20px 10px 10px rgba(16, 79, 209, 0.7);
 }
-
-
 /* util classes to hide/show divs */
 .hidden {
-    display: none;
+  display: none;
 }
 .visible {
-    display: inline;
+  display: inline;
 }
-
 /* remove spinners from input field */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-
-/* background circular shapes */
+/* background circles and bars */
 .circle {
-    height:100px;
-    border: 30px solid white;
-    width: 100px;
-    position: fixed;
-    z-index:-1;
-    border-radius: 100%;
-    transform: translate(180%, -150%);
+  height: 100px;
+  border: 30px solid white;
+  width: 100px;
+  position: fixed;
+  z-index: -1;
+  border-radius: 100%;
+  transform: translate(180%, -180%);
 }
 .bigger {
-    height: 200px;
-    width: 200px;
-    transform: translate(110%, -92%);
+  height: 200px;
+  width: 200px;
+  transform: translate(110%, -110%);
 }
-
-/* background bars */
 .bars {
-    height:40px;
-    border: 30px solid white;
-    width: 1000%;
-    position: fixed;
-    z-index:-1;
-   transform: rotate(45deg) translateY(150%);
+  height: 40px;
+  border: 30px solid white;
+  width: 1000%;
+  position: fixed;
+  z-index: -1;
+  transform: rotate(45deg) translateY(150%);
 }
-
 /* aligning custom control items using flexbox */
 .custom {
-    width: 450px;
-    display: flex;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 .control {
-    display:flex;
-    flex-direction: column;
-    width: 120px;
-    height:120px;
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 100px;
+  margin: 0 5px;
 }
 .label {
-    height:40px;
+  height: 40px;
+  /* center text horizentally and vertically */
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  font-size: 26px;
 }
-.ctrls{
-    height:80px;
-    display: flex;
+.ctrls {
+  height: 60px;
+  display: flex;
+}
+.ctrls input {
+  color: white;
+  width: 80px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+  font-size: 40px;
+  background: transparent;
+  border: 1px solid #eee;
 }
 .buttons {
-    display:flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-
-
-
+.buttons button {
+  cursor: pointer;
+  height: 30px;
+  text-align: center;
+  font-size: 31px;
+  background: transparent;
+  border: 1px solid #eee;
+  color: white;
+}
 h1 {
-    font: halvetica;
-    font-size: 3rem;
+  font: halvetica;
+  font-size: 3rem;
 }
-
+.config {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.config > span {
+  font-size: 2em;
+  margin-top: 50px;
+}
+button[name="start"] {
+  width: 150px;
+  height: 60px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  text-align: center;
+  font-size: 31px;
+  margin: auto 0;
+}
+.presets {
+  display: flex;
+  justify-content: space-around;
+}
+.presets button {
+  width: 100px;
+  height: 100px;
+  background: transparent;
+  border: 1px solid white;
+  margin: 30px;
+  color: white;
+  font-size: 25px;
+}
+.presets span {
+  font-size: 35px;
+}
+button:hover {
+  color: #4776E6;
+  border: 2px solid #4776E6;
+  cursor: pointer;
+}

@@ -30,22 +30,19 @@
                         </text>
                     </defs>
 
-                    <!-- Draw black rectangle in the background -->
                     <rect x="0" y="100" width="95" fill="white" height="60" />
-
-                    <!-- Draw the text string twice. First, the white text without mask.
-       Second, the black text with the mask applied-->
                     <use xlink:href="#Text" fill="white" />
                     <use xlink:href="#Text" fill="black" mask="url(#myMask)" />
                 </svg>
-
-
                 <br><span class="endTime"></span>
             </div>
-            <div class="finished hidden">
-                <button id="restart">Start new timer</button>
-                <!-- <button id="close">Close timer App</button> -->
-            </div>
+            <!--end display-->
+        </div>
+        <!--end timer-->
+
+        <div class="finished hidden">
+            <button id="restart">Start new timer</button>
+            <!-- <button id="close">Close timer App</button> -->
         </div>
         <div class="config visible">
             <div class="custom">
@@ -81,19 +78,24 @@
                 </div>
             </div>
 
-            <button name="start" class="start">Start</button>
+            <button name="start" class="start">START</button>
 
-            <br> or choose a preset timer!
-            <br>
+            <span>choose a preset timer:</span>
+
             <div class="presets">
-                <button class="five" data-val=5> <span>5</span> minutes </button>
-                <button class="fifteen" data-val=15><span>15</span> minutes </button>
-                <button class="thirty" data-val=30><span>30</span> minutes </button>
+                <button class="five" data-val=5>  
+                    <span>5</span> <br> minutes
+                </button>
+                <button class="fifteen" data-val=15>
+                    <span>15</span> <br> minutes
+                </button>
+                <button class="thirty" data-val=30>
+                    <span>30</span> <br> minutes
+                </button>
             </div>
         </div>
     </div>
-    </div>
+    <!--end layer-->
     <script src="index.js"></script>
 </body>
-
 </html>
