@@ -28,54 +28,58 @@ const Timer = duration => {
 
 const displayEndTime = (duration, span) => {
   const endTime = new Date(new Date().getTime() + duration * 1000);
+  let endH = ("0" + endTime.getHours()).slice(-2);
+  let endM = ("0" + endTime.getMinutes()).slice(-2);
 
-  let endH = ("0" + endTime, getHours()).slice(-2);
-  let endM = ("0" + endTime.getMinutes).slice(-2);
-
-  span.innerHTML = `finishes at ${endh} : ${endM}`;
+  span.innerHTML = `timer ends at ${endH}:${endM}`;
 };
 
+const displayProgressCirle = duration => {
+  const progress = document.getElementsByClassName("progress")[0];
+  let dashOffset = 754;
+  const step = 754 / (duration * 1000 / 15);
+  const progressInterval = setInterval(() => {
+    dashOffset -= step;
+    progress.setAttribute("stroke-dashoffset", dashOffset);
+    if (dashOffset <= 0) {
+      clearInterval(progressInterval);
+    }
+  }, 15);
+};
 const startTimer = (className, duration) => {
   // display timer and hide preset buttons
   toggleDisplay("timer", true);
   toggleDisplay("config", false);
+  toggleDisplay("endTime", true);
 
   const timer = document.getElementsByClassName(className)[0];
 
+  displayProgressCirle(duration);
   // get and display ending time.
-  displayEndTime(duration * 1000, timer.querySelector(".endTime"));
+  displayEndTime(duration, timer.querySelector(".endTime"));
   //select correspanding span
   let hours = ""; //timer.querySelector(".hours");
   let minutes = ""; //timer.querySelector(".minutes");
   let seconds = ""; //timer.querySelector(".seconds");
   const display = document.getElementById("Text");
-  const progress = document.getElementById("progress");
   let remainingTime = duration;
 
   const updateTimer = () => {
     const t = Timer(remainingTime--);
     t.hours !== 0
-      ? (hours /*.innerHTML*/ = `${("0" + t.hours).slice(-2)} : `)
+      ? (hours /*.innerHTML*/ = `${("0" + t.hours).slice(-2)}:`)
       : (hours = "");
     minutes /*.innerHTML*/ = ("0" + t.minutes).slice(-2);
     seconds /*.innerHTML*/ = ("0" + t.seconds).slice(-2);
-    display.innerHTML = `${hours}${minutes} : ${seconds}`;
+    display.innerHTML = `${hours}${minutes}:${seconds}`;
 
     if (remainingTime < 0) {
       timerStarted = false;
+      toggleDisplay("endTime", false);
       toggleDisplay("finished", true);
       clearInterval(timeinterval);
-      progress.setAttribute("height", 0);
     }
   };
-
-  let width = 0;
-  const step = 80 / (duration * 1000 / 15);
-  const updater = setInterval(() => {
-    width += step;
-    progress.setAttribute("height", width);
-    if (width === 80) clearInterval(updater);
-  }, 15);
 
   updateTimer();
   const timeinterval = setInterval(updateTimer, 1000);

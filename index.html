@@ -20,28 +20,19 @@
         </header>
         <div class="timer hidden">
             <div class="display">
-                <svg width="500" viewBox="0 0 200 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <defs>
-                        <mask id="myMask" maskUnits="userSpaceOnUse" x="0" y="0" width="200" height="80">
-                            <rect id="progress" x="0" y="0" width="130" height="80" fill="white" />
-                        </mask>
-
-                        <text id="Text" x="100" y="48" font-family="Helvetica" font-weight="bold" font-size="2em" text-anchor="middle">
-                        </text>
-                    </defs>
-
-                    <rect x="0" y="100" width="95" fill="white" height="60" />
-                    <use xlink:href="#Text" fill="white" />
-                    <use xlink:href="#Text" fill="black" mask="url(#myMask)" />
+                <svg width="300" height="300" viewbox="0 0 300 300">
+                    <circle cx="150" cy="150" r="120" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                    <circle class="progress" cx="150" cy="150" r="120" fill="none" stroke="#8e54e9" stroke-width="12" />
+                    <text class="Text" id="Text" x="50%" y="50%" text-anchor="middle" fill="white" dy=".3em"></text>
                 </svg>
-                <br><span class="endTime"></span>
+                <span class="endTime"></span>
             </div>
             <!--end display-->
         </div>
         <!--end timer-->
 
         <div class="finished hidden">
-            <button id="restart">Start new timer</button>
+            <button class="restart" id="restart">Start new timer</button>
             <!-- <button id="close">Close timer App</button> -->
         </div>
         <div class="config visible">
@@ -98,4 +89,5 @@
     <!--end layer-->
     <script src="index.js"></script>
 </body>
+
 </html>
