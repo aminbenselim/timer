@@ -25,28 +25,30 @@ header {
   vertical-align: middle;
   line-height: 40px;
 }
+h1 {
+  font: halvetica;
+  font-size: 3rem;
+}
+/* general style for buttons */
+button {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  font-size: 25px;
+}
+button:hover {
+  color: #4776E6;
+  border: 2px solid #4776E6;
+  cursor: pointer;
+}
+/* general style for layer */
 .layer {
-  /* justify-content: center; */
   width: 80vw;
   min-width: 400px;
   max-width: 600px;
   height: 550px;
   background: #ff5e42;
-  /*background: whitesmoke;*/
   box-shadow: -20px 20px 10px 10px rgba(16, 79, 209, 0.7);
-}
-/* util classes to hide/show divs */
-.hidden {
-  display: none;
-}
-.visible {
-  display: inline;
-}
-/* remove spinners from input field */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 /* background circles and bars */
 .circle {
@@ -56,12 +58,12 @@ input[type=number]::-webkit-outer-spin-button {
   position: fixed;
   z-index: -1;
   border-radius: 100%;
-  transform: translate(180%, -180%);
+  transform: translate(180%, -170%);
 }
 .bigger {
   height: 200px;
   width: 200px;
-  transform: translate(110%, -110%);
+  transform: translate(110%, -105%);
 }
 .bars {
   height: 40px;
@@ -71,7 +73,7 @@ input[type=number]::-webkit-outer-spin-button {
   z-index: -1;
   transform: rotate(45deg) translateY(150%);
 }
-/* aligning custom control items using flexbox */
+/* custom control items */
 .custom {
   display: flex;
   justify-content: center;
@@ -86,7 +88,6 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .label {
   height: 40px;
-  /* center text horizentally and vertically */
   text-align: center;
   vertical-align: middle;
   line-height: 40px;
@@ -115,51 +116,86 @@ input[type=number]::-webkit-outer-spin-button {
   height: 30px;
   text-align: center;
   font-size: 31px;
-  background: transparent;
-  border: 1px solid #eee;
-  color: white;
-}
-h1 {
-  font: halvetica;
-  font-size: 3rem;
+  line-height: 30px;
 }
 .config {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 .config > span {
   font-size: 2em;
-  margin-top: 50px;
+  margin-top: 70px;
+  display: block;
 }
 button[name="start"] {
   width: 150px;
   height: 60px;
-  background-color: transparent;
-  color: white;
   border: 2px solid white;
   text-align: center;
   font-size: 31px;
-  margin: auto 0;
+  margin: 0 auto;
+  display: block;
 }
+/* styling for presets */
 .presets {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 .presets button {
   width: 100px;
   height: 100px;
-  background: transparent;
-  border: 1px solid white;
-  margin: 30px;
-  color: white;
-  font-size: 25px;
+  margin: 15px;
 }
 .presets span {
   font-size: 35px;
 }
-button:hover {
+/* style timer display screen */
+.display {
+  text-align: center;
+}
+/* progress circle */
+svg {
+  display: block;
+  margin: 0 auto;
+}
+.progress {
+  stroke-dasharray: 754;
+}
+.Text {
+  font-family: tahoma;
+  font-size: 50px;
+}
+.endTime {
+  font-size: 35px;
+}
+/* style screen displayed after counter complete */
+.restart {
+  height: 80px;
+  border: 2px solid white;
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.restart:hover {
   color: #4776E6;
   border: 2px solid #4776E6;
   cursor: pointer;
 }
+/* util classes to hide/show divs */
+.hidden {
+  display: none;
+}
+.visible {
+  display: inline;
+}
+/* remove spinners from input field */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -ms-progress-appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+}
+
