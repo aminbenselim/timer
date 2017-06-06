@@ -1,3 +1,8 @@
+// flexbox polyfill
+document.onload = () => {
+  flexibility(document.getElementsByClassName("layer")[0]);
+};
+
 // boolean used to prevent starting multiple timers at once.
 let timerStarted = false;
 
